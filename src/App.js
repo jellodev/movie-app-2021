@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import PropTypes from "prop-types";
 
+const foodILike = [
+    {
+        id: 1,
+        name: "coffee",
+        rating: 5
+    },
+    {
+        id: 2,
+        name: "water",
+        rating: 3
+    },
+    {
+        id: 3,
+        name: "sushi",
+        rating: 4
+    }
+];
+
+function Food({name, rating}) { // props.name
+    return (
+        <div>
+            <h5>I like {name}</h5>
+            <span>{rating}/5</span>
+        </div>
+    );
+}
+// validation props
+Food.propTypes = {
+    id:PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+          {foodILike.map(food => <Food  id={food.id} name={food.name} rating={food.rating}/>)}
+      </div>
   );
 }
 
